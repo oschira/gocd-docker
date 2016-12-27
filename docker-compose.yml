@@ -1,0 +1,16 @@
+#web:
+#  image: nginx:latest
+server:
+  image: gocd/gocd-server
+  hostname: go-server # Needed so the go-agent can find the server
+  ports:
+    - '8153:8153'
+    - '8154:8154'
+agent1:
+    image: gocd/gocd-agent
+    links:
+      - server
+agent2:
+    image: gocd/gocd-agent
+    links:
+      - server
